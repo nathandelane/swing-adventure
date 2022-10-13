@@ -58,8 +58,6 @@ public class SpriteSheet {
       final int index = spriteMap.get(spriteKey);
       final SpritePosition spritePosition = getSpriteRectangleForIndex(index);
 
-//      System.out.format("Trying to get sprite for spriteKey: %s, index: %s, spritePosition: %s%n", spriteKey, index, spritePosition);
-
       spriteImage = image.getSubimage(spritePosition.x, spritePosition.y, spriteWidth, spriteHeight);
     }
 

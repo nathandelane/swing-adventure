@@ -12,6 +12,9 @@ import java.awt.event.KeyEvent;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.nathandelane.swingadventure.AdventureCanvas.WINDOW;
+import static com.nathandelane.swingadventure.state.StateManager.STATE_MANAGER;
+
 public class Main {
 
   public static void main(String[] args) {
@@ -20,24 +23,21 @@ public class Main {
     setupGameStates();
     loadSpriteSheets();
 
-    final AdventureCanvas window = AdventureCanvas.get();
     final GameObject burner = new Burner(20, 20, 64, 64);
     final AdventureTextBox adventureTextBox = new AdventureTextBox(5, 80, 1014, 756);
     adventureTextBox.addText("Hello, World!");
 
-    window.addGameObject(burner);
-    window.addGameObject(adventureTextBox);
-    window.run();
+    WINDOW.addGameObject(burner);
+    WINDOW.addGameObject(adventureTextBox);
+    WINDOW.run();
   }
 
   private static void setupGameStates() {
-    final StateManager sm = StateManager.get();
-
-    sm.addGameState(KeyEvent.VK_ESCAPE, AdventureStates.STOP_GAME);
-    sm.addGameState(KeyEvent.VK_RIGHT, AdventureStates.MOVE_BURNER_RIGHT);
-    sm.addGameState(KeyEvent.VK_LEFT, AdventureStates.MOVE_BURNER_LEFT);
-    sm.addGameState(KeyEvent.VK_UP, AdventureStates.MOVE_BURNER_UP);
-    sm.addGameState(KeyEvent.VK_DOWN, AdventureStates.MOVE_BURNER_DOWN);
+    STATE_MANAGER.addGameState(KeyEvent.VK_ESCAPE, AdventureStates.STOP_GAME);
+    STATE_MANAGER.addGameState(KeyEvent.VK_RIGHT, AdventureStates.MOVE_BURNER_RIGHT);
+    STATE_MANAGER.addGameState(KeyEvent.VK_LEFT, AdventureStates.MOVE_BURNER_LEFT);
+    STATE_MANAGER.addGameState(KeyEvent.VK_UP, AdventureStates.MOVE_BURNER_UP);
+    STATE_MANAGER.addGameState(KeyEvent.VK_DOWN, AdventureStates.MOVE_BURNER_DOWN);
   }
 
   private static void loadSpriteSheets() {

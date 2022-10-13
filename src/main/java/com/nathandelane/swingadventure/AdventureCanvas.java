@@ -4,7 +4,6 @@ import com.nathandelane.swingadventure.objects.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferStrategy;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,7 +12,7 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
   public static final Dimension RESOLUTION = new Dimension(1024, 768);
 
-  private static AdventureCanvas WINDOW;
+  public static final AdventureCanvas WINDOW = new AdventureCanvas();
 
   private JFrame frame;
 
@@ -118,6 +117,8 @@ public final class AdventureCanvas extends JPanel implements Runnable {
     for (final GameObject nextGameObject : gameObjects) {
       nextGameObject.render(g2);
     }
+
+    g2.dispose();
   }
 
   private void tick(){
@@ -147,14 +148,6 @@ public final class AdventureCanvas extends JPanel implements Runnable {
     frame.setVisible(true);
 
     isRunning = true;
-  }
-
-  public static AdventureCanvas get() {
-    if (AdventureCanvas. WINDOW == null) {
-      AdventureCanvas.WINDOW = new AdventureCanvas();
-    }
-
-    return AdventureCanvas.WINDOW;
   }
 
 }

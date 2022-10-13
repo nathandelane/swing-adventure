@@ -14,7 +14,7 @@ public final class StateManager {
     }
   };
 
-  private static StateManager INSTANCE;
+  public static final StateManager STATE_MANAGER = new StateManager();;
 
   private final Map<Object, GameState> gameStates;
 
@@ -48,14 +48,6 @@ public final class StateManager {
     if (key != null && gameStates.containsKey(key)) {
       gameStates.remove(key);
     }
-  }
-
-  public static StateManager get() {
-    if (INSTANCE == null) {
-      INSTANCE = new StateManager();
-    }
-
-    return INSTANCE;
   }
 
 }
