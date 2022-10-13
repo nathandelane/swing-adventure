@@ -15,6 +15,10 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
   public static final AdventureCanvas WINDOW = new AdventureCanvas();
 
+  private static final double NANO_SECONDS_PER_SECOND = 1000_000_000D;
+
+  private static final int FRAMES_PER_SECOND = 60;
+
   private JFrame frame;
 
   private boolean isRunning;
@@ -25,7 +29,10 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
   private final Set<GameObject> gameObjects;
 
+  private final double nanoSecondsPerTick;
+
   private AdventureCanvas() {
+    nanoSecondsPerTick = NANO_SECONDS_PER_SECOND / FRAMES_PER_SECOND;
     isRunning = false;
     tickCount = 0;
     gameObjects = new HashSet<>();
@@ -50,7 +57,6 @@ public final class AdventureCanvas extends JPanel implements Runnable {
   @Override
   public void run() {
     long lastTime = System.nanoTime();
-    double nsPerTick = 1000000000D / 60;
 
     int ticks = 0;
     int frames = 0;
@@ -60,7 +66,7 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
     while (isRunning) {
       long now = System.nanoTime();
-      delta += (now - lastTime) / nsPerTick;
+      delta += (now - lastTime) / nanoSecondsPerTick;
       lastTime = now;
       boolean shouldRender = true;
 
