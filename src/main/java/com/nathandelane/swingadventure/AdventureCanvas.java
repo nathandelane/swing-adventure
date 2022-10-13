@@ -23,18 +23,15 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
   private boolean isRunning;
 
-  private int tickCount;
-
   private Thread gameThread;
 
   private final Set<GameObject> gameObjects;
 
-  private final double nanoSecondsPerTick;
+  private final double drawInterval;
 
   private AdventureCanvas() {
-    nanoSecondsPerTick = NANO_SECONDS_PER_SECOND / FRAMES_PER_SECOND;
+    drawInterval = NANO_SECONDS_PER_SECOND / FRAMES_PER_SECOND;
     isRunning = false;
-    tickCount = 0;
     gameObjects = new HashSet<>();
 
     init();
@@ -56,45 +53,24 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
   @Override
   public void run() {
-    long lastTime = System.nanoTime();
-
-    int ticks = 0;
     int frames = 0;
-
-    long lastTimer = System.currentTimeMillis();
     double delta = 0;
+    long lastTime = System.nanoTime();
+    long currentTime;
 
     while (isRunning) {
-      long now = System.nanoTime();
-      delta += (now - lastTime) / nanoSecondsPerTick;
-      lastTime = now;
-      boolean shouldRender = true;
+      currentTime = System.nanoTime();
 
-      while (delta >= 1) {
-        ticks++;
-        tick();
-        delta -= 1;
-        shouldRender = true;
-      }
+      delta += (currentTime - lastTime) / drawInterval;
 
-      try {
-        Thread.sleep(2);
-      } catch (InterruptedException ex) {
-        ex.printStackTrace();
-      }
+      lastTime = currentTime;
 
-      if (shouldRender) {
-        frames++;
-
+      if (delta > 1) {
         update();
         repaint();
-      }
 
-      if (System.currentTimeMillis() - lastTimer >= 1000) {
-        lastTimer += 1000;
-        System.out.println(ticks + " ticks, " + frames + " frames");
-        frames = 0;
-        ticks = 0;
+        frames++;
+        delta--;
       }
     }
   }
@@ -126,12 +102,6 @@ public final class AdventureCanvas extends JPanel implements Runnable {
     }
 
     g2.dispose();
-  }
-
-  private void tick(){
-    tickCount++;
-
-    //Do game updates here
   }
 
   private void init() {
