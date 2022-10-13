@@ -1,5 +1,6 @@
 package com.nathandelane.swingadventure;
 
+import com.nathandelane.swingadventure.events.EventHandler;
 import com.nathandelane.swingadventure.objects.GameObject;
 
 import javax.swing.*;

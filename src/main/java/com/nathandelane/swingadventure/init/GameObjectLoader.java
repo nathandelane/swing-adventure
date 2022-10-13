@@ -1,4 +1,4 @@
-package com.nathandelane.swingadventure;
+package com.nathandelane.swingadventure.init;
 
 import com.nathandelane.swingadventure.objects.AdventureTextBox;
 import com.nathandelane.swingadventure.objects.Burner;

@@ -1,4 +1,4 @@
-package com.nathandelane.swingadventure;
+package com.nathandelane.swingadventure.init;
 
 import com.nathandelane.swingadventure.state.AdventureStates;
 

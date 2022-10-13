@@ -1,5 +1,6 @@
-package com.nathandelane.swingadventure;
+package com.nathandelane.swingadventure.events;
 
+import com.nathandelane.swingadventure.AdventureCanvas;
 import com.nathandelane.swingadventure.state.GameState;
 import com.nathandelane.swingadventure.state.StateManager;
 
