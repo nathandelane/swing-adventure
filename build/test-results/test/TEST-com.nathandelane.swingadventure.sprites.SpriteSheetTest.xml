@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.nathandelane.swingadventure.sprites.SpriteSheetTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2022-09-30T21:52:51" hostname="M-C02WF1CRHTDF" time="1.834">
+  <properties/>
+  <testcase name="testGetSpriteRectangleForIndex()" classname="com.nathandelane.swingadventure.sprites.SpriteSheetTest" time="1.834"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
