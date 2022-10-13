@@ -20,8 +20,8 @@ public class Main {
   public static void main(String[] args) {
     System.out.println("Hello world!");
 
-    setupGameStates();
-    loadSpriteSheets();
+    GameStateInitializer.setupGameStates();
+    SpriteLoader.loadSpriteSheets();
 
     final GameObject burner = new Burner(20, 20, 64, 64);
     final AdventureTextBox adventureTextBox = new AdventureTextBox(5, 80, 1014, 756);
@@ -30,29 +30,6 @@ public class Main {
     WINDOW.addGameObject(burner);
     WINDOW.addGameObject(adventureTextBox);
     WINDOW.run();
-  }
-
-  private static void setupGameStates() {
-    STATE_MANAGER.addGameState(KeyEvent.VK_ESCAPE, AdventureStates.STOP_GAME);
-    STATE_MANAGER.addGameState(KeyEvent.VK_RIGHT, AdventureStates.MOVE_BURNER_RIGHT);
-    STATE_MANAGER.addGameState(KeyEvent.VK_LEFT, AdventureStates.MOVE_BURNER_LEFT);
-    STATE_MANAGER.addGameState(KeyEvent.VK_UP, AdventureStates.MOVE_BURNER_UP);
-    STATE_MANAGER.addGameState(KeyEvent.VK_DOWN, AdventureStates.MOVE_BURNER_DOWN);
-  }
-
-  private static void loadSpriteSheets() {
-    final String spriteStream = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_\tabcdefghijklmnopqrstuvwxyz{|}~";
-    final Map<String, Integer> sm = new HashMap<>();
-    for (int charIndex = 0; charIndex < spriteStream.length(); charIndex++) {
-      final char c = spriteStream.charAt(charIndex);
-      final String charAsString = String.format("%s", c);
-
-      sm.put(charAsString, charIndex);
-    }
-
-    final SpriteSheet spriteSheet = new SpriteSheet("spritesheets/fonts/basic.png", 20, 20, sm);
-
-    SpriteSheetManager.get().addSpriteSheet("basic", spriteSheet);
   }
 
 }
