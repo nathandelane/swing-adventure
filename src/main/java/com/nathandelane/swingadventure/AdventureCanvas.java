@@ -9,9 +9,9 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-public final class AdventureCanvas extends Canvas implements Runnable {
+public final class AdventureCanvas extends JPanel implements Runnable {
 
-  public static final Dimension RESOLUTION = new Dimension(1024, 769);
+  public static final Dimension RESOLUTION = new Dimension(1024, 768);
 
   private static AdventureCanvas WINDOW;
 
@@ -20,6 +20,8 @@ public final class AdventureCanvas extends Canvas implements Runnable {
   private boolean isRunning;
 
   private int tickCount;
+
+  private Thread gameThread;
 
   private final Set<GameObject> gameObjects;
 
@@ -33,9 +35,10 @@ public final class AdventureCanvas extends Canvas implements Runnable {
   }
 
   public synchronized void start() {
-    new Thread(this).start();
-
     isRunning = true;
+
+    gameThread = new Thread(this);
+    gameThread.start();
   }
 
   public synchronized void stop() {
@@ -46,8 +49,6 @@ public final class AdventureCanvas extends Canvas implements Runnable {
 
   @Override
   public void run() {
-    createBufferStrategy(2);
-
     long lastTime = System.nanoTime();
     double nsPerTick = 1000000000D / 60;
 
@@ -78,9 +79,9 @@ public final class AdventureCanvas extends Canvas implements Runnable {
 
       if (shouldRender) {
         frames++;
-        render();
 
-        shouldRender = false;
+        update();
+        repaint();
       }
 
       if (System.currentTimeMillis() - lastTimer >= 1000) {
@@ -104,31 +105,19 @@ public final class AdventureCanvas extends Canvas implements Runnable {
     return Collections.unmodifiableSet(gameObjects);
   }
 
-  public void render () {
-    BufferStrategy bs = getBufferStrategy();
+  public void update() {
 
-    if (bs == null) {
-      createBufferStrategy(2);
+  }
 
-      bs = getBufferStrategy();
+  @Override
+  public void paintComponent(final Graphics g) {
+    super.paintComponent(g);
+
+    final Graphics2D g2 = (Graphics2D) g;
+
+    for (final GameObject nextGameObject : gameObjects) {
+      nextGameObject.render(g2);
     }
-
-    do {
-      do {
-        final Graphics2D g2 = (Graphics2D) bs.getDrawGraphics();
-
-        g2.setColor(Color.BLACK);
-        g2.fillRect(0, 0, RESOLUTION.width, RESOLUTION.height);
-
-        for (final GameObject nextGameObject : gameObjects) {
-          nextGameObject.render(g2);
-        }
-
-        g2.dispose();
-      } while (bs.contentsRestored());
-
-      bs.show();
-    } while (bs.contentsLost());
   }
 
   private void tick(){
@@ -146,15 +135,16 @@ public final class AdventureCanvas extends Canvas implements Runnable {
     frame.setResizable(false);
     frame.setLayout(new BorderLayout());
     frame.add(this);
+    frame.pack();
 
     final EventHandler eventHandler = new EventHandler(this);
 
     frame.addKeyListener(eventHandler);
 
-    this.setIgnoreRepaint(true);
+    this.setBackground(Color.BLACK);
+    this.setDoubleBuffered(true);
 
     frame.setVisible(true);
-    frame.setIgnoreRepaint(true);
 
     isRunning = true;
   }
