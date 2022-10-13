@@ -56,7 +56,7 @@ public class SpriteSheet {
 
     if (spriteMap.containsKey(spriteKey)) {
       final int index = spriteMap.get(spriteKey);
-      final SpritePosition spritePosition = getSpriteRectangleForIndex(index);
+      final SpritePosition spritePosition = getSpritePositionForIndex(index);
 
       spriteImage = image.getSubimage(spritePosition.x, spritePosition.y, spriteWidth, spriteHeight);
     }
@@ -64,7 +64,7 @@ public class SpriteSheet {
     return spriteImage;
   }
 
-  SpritePosition getSpriteRectangleForIndex(final int index) {
+  SpritePosition getSpritePositionForIndex(final int index) {
     final int yPos = (index / (width / spriteWidth)) * spriteWidth;
     final int xPos = (index % (width / spriteWidth)) * spriteHeight;
 

@@ -1,7 +1,6 @@
 package com.nathandelane.swingadventure.objects;
 
 import com.nathandelane.swingadventure.sprites.SpriteSheet;
-import com.nathandelane.swingadventure.sprites.SpriteSheetManager;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

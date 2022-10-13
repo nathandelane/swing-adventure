@@ -2,7 +2,6 @@ package com.nathandelane.swingadventure.events;
 
 import com.nathandelane.swingadventure.AdventureCanvas;
 import com.nathandelane.swingadventure.state.GameState;
-import com.nathandelane.swingadventure.state.StateManager;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;

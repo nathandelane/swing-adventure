@@ -1,7 +1,6 @@
 package com.nathandelane.swingadventure.init;
 
 import com.nathandelane.swingadventure.sprites.SpriteSheet;
-import com.nathandelane.swingadventure.sprites.SpriteSheetManager;
 
 import java.util.HashMap;
 import java.util.Map;
