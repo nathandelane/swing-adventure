@@ -53,7 +53,6 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
   @Override
   public void run() {
-    int frames = 0;
     double delta = 0;
     long lastTime = System.nanoTime();
     long currentTime;
@@ -69,7 +68,6 @@ public final class AdventureCanvas extends JPanel implements Runnable {
         update();
         repaint();
 
-        frames++;
         delta--;
       }
     }
