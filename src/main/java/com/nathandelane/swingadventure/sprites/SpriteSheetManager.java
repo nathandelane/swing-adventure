@@ -5,7 +5,7 @@ import java.util.Map;
 
 public final class SpriteSheetManager {
 
-  private static SpriteSheetManager INSTANCE;
+  public static final SpriteSheetManager SPRITE_SHEET_MANAGER = new SpriteSheetManager();
 
   private final Map<String, SpriteSheet> spriteSheetMap;
 
@@ -35,14 +35,6 @@ public final class SpriteSheetManager {
     else {
       System.out.format("Warning: trying to add sprite sheet for existing or null sprite sheet name: %s%n", spriteSheetName);
     }
-  }
-
-  public static SpriteSheetManager get() {
-    if (INSTANCE == null) {
-      INSTANCE = new SpriteSheetManager();
-    }
-
-    return INSTANCE;
   }
 
 }

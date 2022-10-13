@@ -6,6 +6,8 @@ import com.nathandelane.swingadventure.sprites.SpriteSheetManager;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import static com.nathandelane.swingadventure.sprites.SpriteSheetManager.SPRITE_SHEET_MANAGER;
+
 public class AdventureTextBox implements GameObject {
 
   private int x;
@@ -45,7 +47,7 @@ public class AdventureTextBox implements GameObject {
     int cursorX = x;
     int cursorY = y;
 
-    final SpriteSheet basicText = SpriteSheetManager.get().getSpriteSheet("basic");
+    final SpriteSheet basicText = SPRITE_SHEET_MANAGER.getSpriteSheet("basic");
 
     for (int i = 0; i < stringToRender.length(); i++) {
       final String key = "" + stringToRender.charAt(i);

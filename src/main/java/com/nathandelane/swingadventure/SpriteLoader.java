@@ -6,6 +6,8 @@ import com.nathandelane.swingadventure.sprites.SpriteSheetManager;
 import java.util.HashMap;
 import java.util.Map;
 
+import static com.nathandelane.swingadventure.sprites.SpriteSheetManager.SPRITE_SHEET_MANAGER;
+
 public final class SpriteLoader {
 
   private SpriteLoader() { }
@@ -22,7 +24,7 @@ public final class SpriteLoader {
 
     final SpriteSheet spriteSheet = new SpriteSheet("spritesheets/fonts/basic.png", 20, 20, sm);
 
-    SpriteSheetManager.get().addSpriteSheet("basic", spriteSheet);
+    SPRITE_SHEET_MANAGER.addSpriteSheet("basic", spriteSheet);
   }
 
 }
