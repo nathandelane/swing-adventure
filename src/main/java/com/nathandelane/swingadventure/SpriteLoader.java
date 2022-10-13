@@ -8,6 +8,8 @@ import java.util.Map;
 
 public final class SpriteLoader {
 
+  private SpriteLoader() { }
+
   public static void loadSpriteSheets() {
     final String spriteStream = " !\"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_\tabcdefghijklmnopqrstuvwxyz{|}~";
     final Map<String, Integer> sm = new HashMap<>();

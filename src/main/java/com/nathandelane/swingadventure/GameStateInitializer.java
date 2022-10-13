@@ -8,6 +8,8 @@ import static com.nathandelane.swingadventure.state.StateManager.STATE_MANAGER;
 
 public final class GameStateInitializer {
 
+  private GameStateInitializer() { }
+
   public static void setupGameStates() {
     STATE_MANAGER.addGameState(KeyEvent.VK_ESCAPE, AdventureStates.STOP_GAME);
     STATE_MANAGER.addGameState(KeyEvent.VK_RIGHT, AdventureStates.MOVE_BURNER_RIGHT);
