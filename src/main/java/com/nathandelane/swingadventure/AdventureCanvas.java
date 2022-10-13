@@ -15,7 +15,7 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
   public static final AdventureCanvas WINDOW = new AdventureCanvas();
 
-  private static final double NANO_SECONDS_PER_SECOND = 1000_000_000D;
+  private static final double NANO_SECONDS_PER_SECOND = 1_000_000_000D;
 
   private static final int FRAMES_PER_SECOND = 60;
 
@@ -55,12 +55,16 @@ public final class AdventureCanvas extends JPanel implements Runnable {
   public void run() {
     double delta = 0;
     long lastTime = System.nanoTime();
+    long timer = 0;
+    int drawCount = 0;
+
     long currentTime;
 
     while (isRunning) {
       currentTime = System.nanoTime();
 
       delta += (currentTime - lastTime) / drawInterval;
+      timer += (currentTime - lastTime);
 
       lastTime = currentTime;
 
@@ -69,6 +73,14 @@ public final class AdventureCanvas extends JPanel implements Runnable {
         repaint();
 
         delta--;
+        drawCount++;
+      }
+
+      if (timer >= NANO_SECONDS_PER_SECOND) {
+        System.out.println("FPS: " + drawCount);
+
+        drawCount = 0;
+        timer = 0;
       }
     }
   }
