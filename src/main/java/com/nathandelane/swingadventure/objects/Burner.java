@@ -29,9 +29,9 @@ public class Burner implements GameObject {
   }
 
   @Override
-  public void update(final float deltaX, final float deltaY) {
-    final float newX = ((float) this.x + deltaX);
-    final float newY = ((float) this.y + deltaY);
+  public void update(final GameObjectTranslation t) {
+    final float newX = ((float) this.x + t.deltaX);
+    final float newY = ((float) this.y + t.deltaY);
 
     if (
       (newX + width) < AdventureCanvas.RESOLUTION.width

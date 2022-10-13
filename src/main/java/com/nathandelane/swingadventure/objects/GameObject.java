@@ -6,6 +6,6 @@ public interface GameObject {
 
   void render(Graphics g);
 
-  void update(final float deltaX, final float deltaY);
+  void update(GameObjectTranslation t);
 
 }

@@ -42,6 +42,9 @@ public class AdventureTextBox implements GameObject {
   public void render(Graphics g) {
     Graphics2D g2 = (Graphics2D) g;
 
+    g2.setColor(Color.YELLOW);
+    g2.drawRoundRect(x + 0, y + 0, width - 1, height - 1, 15, 15);
+
     final String stringToRender = text.toString();
 
     int cursorX = x;
@@ -65,7 +68,7 @@ public class AdventureTextBox implements GameObject {
   }
 
   @Override
-  public void update(float deltaX, float deltaY) {
+  public void update(final GameObjectTranslation translation) {
     // No-op - this doesn't move yet.
   }
 

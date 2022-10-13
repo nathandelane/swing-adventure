@@ -3,6 +3,7 @@ package com.nathandelane.swingadventure.state;
 import com.nathandelane.swingadventure.AdventureCanvas;
 import com.nathandelane.swingadventure.objects.Burner;
 import com.nathandelane.swingadventure.objects.GameObject;
+import com.nathandelane.swingadventure.objects.GameObjectTranslation;
 
 public final class AdventureStates {
 
@@ -22,7 +23,7 @@ public final class AdventureStates {
 
       for (final GameObject gameObject : adventureCanvas.getGameObjects()) {
         if (gameObject instanceof Burner) {
-          gameObject.update(5.0f, 0);
+          gameObject.update(new GameObjectTranslation(5.0f, 0));
         }
       }
     }
@@ -35,7 +36,7 @@ public final class AdventureStates {
 
       for (final GameObject gameObject : adventureCanvas.getGameObjects()) {
         if (gameObject instanceof Burner) {
-          gameObject.update(-5.0f, 0);
+          gameObject.update(new GameObjectTranslation(-5.0f, 0));
         }
       }
     }
@@ -48,7 +49,7 @@ public final class AdventureStates {
 
       for (final GameObject gameObject : adventureCanvas.getGameObjects()) {
         if (gameObject instanceof Burner) {
-          gameObject.update(0f, -5.0f);
+          gameObject.update(new GameObjectTranslation(0f, -5.0f));
         }
       }
     }
@@ -61,7 +62,7 @@ public final class AdventureStates {
 
       for (final GameObject gameObject : adventureCanvas.getGameObjects()) {
         if (gameObject instanceof Burner) {
-          gameObject.update(0f, 5.0f);
+          gameObject.update(new GameObjectTranslation(0f, 5.0f));
         }
       }
     }
