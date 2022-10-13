@@ -140,8 +140,8 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
     final EventHandler eventHandler = new EventHandler(this);
 
-    frame.addKeyListener(eventHandler);
-
+    this.setFocusable(true);
+    this.addKeyListener(eventHandler);
     this.setBackground(Color.BLACK);
     this.setDoubleBuffered(true);
 
