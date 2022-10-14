@@ -8,4 +8,10 @@ public interface GameObject {
 
   void update(GameObjectTranslation t);
 
+  /**
+   * Z-index: towards negative will be underneath towards positive.
+   * @return
+   */
+  int getZIndex();
+
 }

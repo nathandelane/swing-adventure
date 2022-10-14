@@ -5,9 +5,7 @@ import com.nathandelane.swingadventure.objects.GameObject;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public final class AdventureCanvas extends JPanel implements Runnable {
 
@@ -107,11 +105,19 @@ public final class AdventureCanvas extends JPanel implements Runnable {
 
     final Graphics2D g2 = (Graphics2D) g;
 
-    for (final GameObject nextGameObject : gameObjects) {
+    for (final GameObject nextGameObject : getGameObjectsSortedByZIndex()) {
       nextGameObject.render(g2);
     }
 
     g2.dispose();
+  }
+
+  private java.util.List<GameObject> getGameObjectsSortedByZIndex() {
+    final java.util.List<GameObject> sortedGameObjects = new ArrayList<>(gameObjects);
+
+    Collections.sort(sortedGameObjects, Comparator.comparingInt(GameObject::getZIndex));
+
+    return sortedGameObjects;
   }
 
   private void init() {

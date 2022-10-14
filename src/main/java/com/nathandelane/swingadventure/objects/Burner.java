@@ -57,6 +57,11 @@ public class Burner implements GameObject {
   }
 
   @Override
+  public int getZIndex() {
+    return 0;
+  }
+
+  @Override
   public boolean equals(Object o) {
     if (this == o) return true;
     if (o == null || getClass() != o.getClass()) return false;

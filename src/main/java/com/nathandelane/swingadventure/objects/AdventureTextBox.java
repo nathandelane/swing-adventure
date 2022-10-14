@@ -71,4 +71,9 @@ public class AdventureTextBox implements GameObject {
     // No-op - this doesn't move yet.
   }
 
+  @Override
+  public int getZIndex() {
+    return 1;
+  }
+
 }
